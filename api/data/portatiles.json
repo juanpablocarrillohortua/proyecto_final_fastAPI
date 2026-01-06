@@ -23759,6 +23759,38 @@
       "resolucionpantalla2": 768,
       "OS": "chrome",
       "anyosgarantia": 1
+    },
+    {
+      "marca": "apple",
+      "modelo": "modelo ty",
+      "precio": 800.0,
+      "rating": null,
+      "marcaprocesador": null,
+      "modeloprocesador": null,
+      "numcores": null,
+      "numthreads": null,
+      "memoriaram": null,
+      "tipomemoriaprimaria": null,
+      "capacidadmemoriaprimaria": null,
+      "tipomemoriasecundaria": null,
+      "OS": "windows",
+      "id": 1003
+    },
+    {
+      "marca": "apple",
+      "modelo": "modelo ty",
+      "precio": 800.0,
+      "rating": null,
+      "marcaprocesador": null,
+      "modeloprocesador": null,
+      "numcores": null,
+      "numthreads": null,
+      "memoriaram": null,
+      "tipomemoriaprimaria": null,
+      "capacidadmemoriaprimaria": null,
+      "tipomemoriasecundaria": null,
+      "OS": "windows",
+      "id": 1004
     }
   ]
 }
