@@ -21,7 +21,7 @@ async def laptops_all():
 
 #maximo de precio
 @router.get("/precio/{precio_laptop}")
-async def laptops_max_price(precio_laptop: int):
+async def laptops_max_price(precio_laptop: int = Path(gt=0)):
     return await laptop.get_portatilesPrecioMax(precio_laptop)
 
 #por os
@@ -31,7 +31,7 @@ async def laptops_max_price(sistema: str):
 
 #por id
 @router.get("/{laptop_id}")
-async def laptops_by_id(laptop_id: int):
+async def laptops_by_id(laptop_id: int = Path(gt=0)):
     return await laptop.get_portatil(laptop_id)
 
 #por query params

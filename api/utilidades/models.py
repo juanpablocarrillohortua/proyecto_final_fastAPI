@@ -30,9 +30,9 @@ class OpSys(str, Enum):
 
 # Modelo para un Laptop
 class Portatil(BaseModel):
-    marca: str|None = None
+    marca: str
     modelo: str|None = None
-    precio: float|None = None
+    precio: float|None = Field(gt=0, default=0)
     rating: int|None = None
     marcaprocesador : ProccesorBrand|None = None 
     modeloprocesador: str|None = None
