@@ -21,7 +21,7 @@ async def laptops_all():
 
 #maximo de precio
 @router.get("/precio/{precio_laptop}", description="ingrese el precio que desea como tope", summary="obtener las laptops menores a un precio")
-async def laptops_max_price(precio_laptop: int = Path(gt=0)): #precio mayor a 0
+async def laptops_max_price(precio_laptop: int = Path(gt=0, description="Precio maximo para las laptops")): #precio mayor a 0
     res = await laptop.get_portatilesPrecioMax(precio_laptop)
 
     if len(res['portatiles']) == 0:
@@ -31,7 +31,7 @@ async def laptops_max_price(precio_laptop: int = Path(gt=0)): #precio mayor a 0
 
 #por os
 @router.get("/os", description="ingrese el sistema operativo que desea buscar", summary="obtener las laptops con cierto OS")
-async def laptops_max_price(sistema: OpSys):
+async def laptops_max_price(sistema: OpSys = Query(description="Sistema operativo de la laptop")):
     return await laptop.get_portatilesOS(sistema)
 
 #por id
@@ -47,7 +47,7 @@ async def laptops_by_id(laptop_id: int = Path(gt=0)): #id mayor a 0
 @router.get("/", 
             description="skip define en que pos inicia, total cuantas desea extraer y filtronombre permite filtrar segun nombre de modelo", 
             summary="obtener una lista de laptops")
-async def laptops_by_query(skip: int=0, total: int=10, filtronombre: str| None = None): #filtro nombre opcional
+async def laptops_by_query(skip: int=0, total: int=10, filtronombre: str| None = Query(default=None, description="Filtra los portátiles por el nombre del modelo")): #filtro nombre opcional
     return await laptop.get_portatilesModelo(skip=skip, total=total, filtronombre=filtronombre)
 
 
