@@ -23783,6 +23783,19 @@
       "resolucionpantalla2": 768,
       "OS": "chrome",
       "anyosgarantia": 1
+    },
+    {
+      "marca": null,
+      "modelo": "string",
+      "precio": 0.0,
+      "rating": null,
+      "marcaprocesador": null,
+      "modeloprocesador": null,
+      "numcores": null,
+      "numthreads": null,
+      "memoriaram": null,
+      "tipomemoriaprimaria": null,
+      "id": 1003
     }
   ]
 }

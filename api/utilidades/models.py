@@ -6,6 +6,16 @@ from pydantic import BaseModel, Field
 
 # Modelo para un Laptop
 class Portatil(BaseModel):
-    modelo: str
-    precio : int = 0
-    OS : str = None
+    marca: str|None = None
+    modelo: str|None = None
+    precio: float|None = None
+    rating: int|None = None
+    marcaprocesador : str|None = None #enum
+    modeloprocesador: str|None = None
+    numcores: int|None = None
+    numthreads: int|None = None
+    memoriaram: int|None = None
+    tipomemoriaprimaria: str|None = None #enum
+    capacidadmemoriaprimaria: int|None = None
+    tipomemoriasecundaria: int|None = None #enum
+    OS: str|None = None
