@@ -107,6 +107,8 @@ class PortatilData:
             self.filePortatiles.close()
             return self.portatiles['portatiles'][portatilPos]
         else:
+            json.dump(self.portatiles,self.filePortatiles,indent=2)
+            self.filePortatiles.close()
             return None
 
     # Borramos un portatil
@@ -129,4 +131,6 @@ class PortatilData:
             self.filePortatiles.close()
             return {"info":"borrado portatil "+str(portatil_id)}
         else:
+            json.dump(self.portatiles,self.filePortatiles,indent=2)
+            self.filePortatiles.close()
             return None

@@ -1,9 +1,9 @@
-from fastapi import APIRouter, HTTPException, FastAPI, Response, status, Body, Query, Path 
+from fastapi import APIRouter, HTTPException, Body, Query, Path 
 from typing import Union, Annotated, Any
 from pydantic import Field
 
 from api.data.portatildata import PortatilData
-from api.utilidades.models import Portatil
+from api.utilidades.models import Portatil, OpSys
 
 router = APIRouter()
 
@@ -21,22 +21,31 @@ async def laptops_all():
 
 #maximo de precio
 @router.get("/precio/{precio_laptop}")
-async def laptops_max_price(precio_laptop: int = Path(gt=0)):
-    return await laptop.get_portatilesPrecioMax(precio_laptop)
+async def laptops_max_price(precio_laptop: int = Path(gt=0)): #precio mayor a 0
+    res = await laptop.get_portatilesPrecioMax(precio_laptop)
+
+    if len(res['portatiles']) == 0:
+        raise HTTPException(status_code=404, detail="Laptop price not found")
+    
+    return res
 
 #por os
 @router.get("/os")
-async def laptops_max_price(sistema: str):
+async def laptops_max_price(sistema: OpSys):
     return await laptop.get_portatilesOS(sistema)
 
 #por id
 @router.get("/{laptop_id}")
-async def laptops_by_id(laptop_id: int = Path(gt=0)):
-    return await laptop.get_portatil(laptop_id)
+async def laptops_by_id(laptop_id: int = Path(gt=0)): #id mayor a 0
+    res = await laptop.get_portatil(laptop_id)
+    if not res:
+        raise HTTPException(status_code=404, detail="Laptop id not found")
+    
+    return res
 
 #por query params
 @router.get("/")
-async def laptops_by_query(skip: int=0, total: int=10, filtronombre: str| None = None):
+async def laptops_by_query(skip: int=0, total: int=10, filtronombre: str| None = None): #filtro nombre opcional
     return await laptop.get_portatilesModelo(skip=skip, total=total, filtronombre=filtronombre)
 
 
@@ -50,14 +59,23 @@ async def write_laptop(portatil: Portatil):
 
 @router.put("/")
 async def update_laptop(portatil:Portatil, laptop_id:int):
-    return await laptop.update_portatil(portatil_id=laptop_id, portatil=portatil)
+    res = await laptop.update_portatil(portatil_id=laptop_id, portatil=portatil)
+
+    if not res:
+        raise HTTPException(status_code=404, detail="Laptop id not found")
+
+    return res
 
 
 ##DELETE portatil
 
 @router.delete("/")
 async def delete_laptop(laptop_id: int):
-    return await laptop.delete_portatil(laptop_id)
+    res = await laptop.delete_portatil(laptop_id)
+
+    if not res:
+        raise HTTPException(status_code=404, detail="Laptop id not found")
+    return res
 
 
 
